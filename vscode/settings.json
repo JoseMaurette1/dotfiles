@@ -19,9 +19,10 @@
   },
 
   // Change font
-  "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "Cascadia Mono",
   "editor.fontLigatures": true,
-  "editor.lineHeight": 25,
+  "editor.lineHeight": 1.9,
+  "editor.lineNumbers": "off",
 
   // Font size
   "editor.fontSize": 17,
@@ -82,18 +83,16 @@
   "window.zoomLevel": 0.5,
   "terminal.integrated.env.linux": {},
   "tabnine.experimentalAutoImports": true,
-  "window.menuBarVisibility": "compact",
-  "window.commandCenter": false,
+  "window.menuBarVisibility": "toggle",
   "editor.minimap.enabled": false,
   "breadcrumbs.enabled": false,
   "editor.stickyScroll.enabled": false,
   "glassit.alpha": 220,
-  "workbench.colorTheme": "GitHub Dark",
   "git.autofetch": true,
   "explorer.confirmDragAndDrop": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "git.confirmSync": false,
-  "workbench.productIconTheme": "material-product-icons",
+  "workbench.productIconTheme": "",
   "debug.disassemblyView.showSourceCode": false,
   "codeium.enableCodeLens": false,
   "codeium.enableConfig": {
@@ -102,6 +101,10 @@
     "plaintext": true
   },
   "remote.autoForwardPortsSource": "hybrid",
-  "workbench.iconTheme": "glyph.minimal"
+  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.sideBar.location": "right",
+  "workbench.colorTheme": "GitHub Dark",
+  "workbench.activityBar.location": "top",
+  "workbench.layoutControl.enabled": false,
+  "window.commandCenter": false
 }
-
