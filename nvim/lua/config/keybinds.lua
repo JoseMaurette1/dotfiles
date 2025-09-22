@@ -18,7 +18,14 @@ vim.keymap.set("n", "<C-h>", function()
 end, { desc = "Focus file tree or return to editor", silent = true })
 
 -- Additional window navigation (optional)
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window", silent = true })
+vim.keymap.set("n", "<C-l>", function()
+  -- If we're in nvim-tree, move to the editor window
+  if vim.bo.filetype == 'NvimTree' then
+    vim.cmd('wincmd p')  -- Go to previous window (editor)
+  else
+    vim.cmd('wincmd l')  -- Move to right window
+  end
+end, { desc = "Move to right window or editor from file tree", silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to window below", silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to window above", silent = true })
 
