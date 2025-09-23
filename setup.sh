@@ -42,11 +42,6 @@ else
     echo "⚠️  nvim directory not found in dotfiles"
 fi
 
-# Setup VSCode configuration (if it exists)
-if [ -d "$DOTFILES_DIR/vscode" ]; then
-    create_symlink "$DOTFILES_DIR/vscode" "$CONFIG_DIR/Code/User" "VSCode"
-fi
-
 echo ""
 echo "🎉 Dotfiles setup complete!"
 echo "Your configurations are now symlinked and ready to use."
