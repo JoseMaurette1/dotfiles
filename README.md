@@ -8,7 +8,6 @@ My personal configuration files for various applications.
   - Plugin management via [lazy.nvim](https://github.com/folke/lazy.nvim)
   - Custom keybindings and options
   - Treesitter, LSP, completion, and more
-- **vscode/**: Visual Studio Code settings
 
 ## Installation
 
@@ -40,15 +39,6 @@ mv ~/.config/nvim ~/.config/nvim.backup
 
 # Create symlink
 ln -s ~/dotfiles/nvim ~/.config/nvim
-```
-
-#### VSCode
-```bash
-# Backup existing config (optional)
-mv ~/.config/Code/User ~/.config/Code/User.backup
-
-# Create symlink
-ln -s ~/dotfiles/vscode ~/.config/Code/User
 ```
 
 ## Neovim Setup
