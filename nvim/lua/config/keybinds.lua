@@ -29,5 +29,33 @@ end, { desc = "Move to right window or editor from file tree", silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to window below", silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to window above", silent = true })
 
+-- Terminal
+vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<cr>", { desc = "Toggle terminal", silent = true })
+
+-- OpenCode terminal (uses terminal ID 2)
+vim.keymap.set("n", "<leader>c", function()
+  local Terminal = require("toggleterm.terminal").Terminal
+  local opencode = Terminal:new({
+    cmd = "opencode",
+    direction = "float",
+    hidden = true,
+    on_open = function(term)
+      vim.cmd("startinsert!")
+    end,
+  })
+  opencode:toggle()
+end, { desc = "Toggle OpenCode", silent = true })
+
 -- Legacy file explorer (netrw) - keeping as backup
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex, { desc = "Open netrw explorer" })
+
+-- Theme switcher
+local themes = { "zenbones", "mellifluous"}
+local current_theme_index = 1
+
+vim.keymap.set("n", "<leader>th", function()
+    current_theme_index = current_theme_index % #themes + 1
+    local theme = themes[current_theme_index]
+    vim.cmd.colorscheme(theme)
+    print("Switched to: " .. theme)
+end, { desc = "Cycle through themes" })

@@ -18,7 +18,7 @@ return {
                 "vue",
                 "svelte",
             },
-            auto_install = false,
+            auto_install = true,
         })
     end
 }
