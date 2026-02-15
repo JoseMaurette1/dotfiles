@@ -1,4 +1,6 @@
 vim.g.mapleader = " "
+vim.keymap.set("i", "jj", "<Esc>", { desc = "Use jj to escape from insert mode", silent = true })
+vim.keymap.set("i", "<CapsLock>", "<Esc>", { desc = "Use CapsLock to escape from insert mode", silent = true })
 
 -- File explorer (nvim-tree)
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file explorer", silent = true })

@@ -9,6 +9,14 @@ vim.opt.termguicolors = true
 vim.opt.timeoutlen = 300
 vim.opt.ttimeoutlen = 10
 
+-- Disable diagnostics for Python files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    vim.diagnostic.enable(false)
+  end,
+})
+
 
 
 
