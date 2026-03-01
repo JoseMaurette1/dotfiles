@@ -41,7 +41,7 @@ return {
         highlight_git = true,
         highlight_opened_files = "none",
         highlight_modified = "none",
-        root_folder_label = ":~:s?$?/..?",
+        root_folder_label = false,
         indent_markers = {
           enable = true,
         },
