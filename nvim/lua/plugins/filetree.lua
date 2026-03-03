@@ -38,7 +38,7 @@ return {
         signcolumn = "yes",
       },
       renderer = {
-        highlight_git = true,
+        highlight_git = false,
         highlight_opened_files = "none",
         highlight_modified = "none",
         root_folder_label = false,
@@ -50,7 +50,7 @@ return {
             file = true,
             folder = true,
             folder_arrow = true,
-            git = true,
+            git = false,
           },
           glyphs = {
             default = "󰈚",

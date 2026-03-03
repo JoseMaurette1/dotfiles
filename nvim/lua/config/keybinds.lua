@@ -52,12 +52,26 @@ end, { desc = "Toggle OpenCode", silent = true })
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex, { desc = "Open netrw explorer" })
 
 -- Theme switcher
-local themes = { "zenbones", "mellifluous"}
+local themes = {
+	"zenbones",
+	"kanagawa-paper",
+	"tokyonight",
+}
 local current_theme_index = 1
 
 vim.keymap.set("n", "<leader>th", function()
-    current_theme_index = current_theme_index % #themes + 1
-    local theme = themes[current_theme_index]
-    vim.cmd.colorscheme(theme)
-    print("Switched to: " .. theme)
-end, { desc = "Cycle through themes" })
+	current_theme_index = current_theme_index % #themes + 1
+	local theme = themes[current_theme_index]
+	vim.cmd.colorscheme(theme)
+	print("Switched to: " .. theme)
+end, { desc = "Next colorscheme" })
+
+vim.keymap.set("n", "<leader>tH", function()
+	current_theme_index = current_theme_index - 1
+	if current_theme_index < 1 then
+		current_theme_index = #themes
+	end
+	local theme = themes[current_theme_index]
+	vim.cmd.colorscheme(theme)
+	print("Switched to: " .. theme)
+end, { desc = "Previous colorscheme" })

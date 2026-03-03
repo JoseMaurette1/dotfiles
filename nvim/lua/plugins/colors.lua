@@ -1,73 +1,61 @@
+local function setup_lualine(colors)
+	local lualine = require("lualine")
+	local theme = require("lualine.themes.auto")
+
+	theme.normal.a.bg = colors.orange
+	theme.normal.a.fg = colors.bg
+	theme.normal.a.gui = "bold"
+
+	theme.insert.a.bg = colors.yellow
+	theme.insert.a.fg = colors.bg
+	theme.insert.a.gui = "bold"
+
+	theme.visual.a.bg = colors.purple
+	theme.visual.a.fg = colors.bg
+	theme.visual.a.gui = "bold"
+
+	theme.command.a.bg = colors.red
+	theme.command.a.fg = colors.bg
+	theme.command.a.gui = "bold"
+
+	lualine.setup({ theme = theme })
+end
+
 return {
-	{
-		"zenbones-theme/zenbones.nvim",
-		dependencies = "rktjmp/lush.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme('zenbones')
-
-			-- Apply mellifluous colors to zenbones after colorscheme loads
-			local mel_red = '#D88860'      -- Red from mellifluous
-			local mel_brown = '#D4D4A8'    -- Brown/Khaki from mellifluous
-			local mel_yellow = '#E8E6B8'   -- Yellow from mellifluous (for strings)
-
-			-- Use autocmd to ensure colors persist
-			vim.api.nvim_create_autocmd('ColorScheme', {
-				pattern = 'zenbones',
-				callback = function()
-					-- Override syntax highlighting groups
-					vim.api.nvim_set_hl(0, 'Keyword', { fg = mel_red, bold = true })
-					vim.api.nvim_set_hl(0, 'Type', { fg = mel_brown })
-					vim.api.nvim_set_hl(0, 'Function', { fg = mel_red })
-					vim.api.nvim_set_hl(0, 'Constant', { fg = mel_brown })
-					vim.api.nvim_set_hl(0, 'Identifier', { fg = mel_red })
-					vim.api.nvim_set_hl(0, 'Statement', { fg = mel_red })
-					vim.api.nvim_set_hl(0, 'Include', { fg = mel_brown }) -- imports
-					vim.api.nvim_set_hl(0, 'String', { fg = mel_yellow }) -- quoted strings
-					vim.api.nvim_set_hl(0, '@keyword', { fg = mel_red, bold = true })
-					vim.api.nvim_set_hl(0, '@type', { fg = mel_brown })
-					vim.api.nvim_set_hl(0, '@function', { fg = mel_red })
-					vim.api.nvim_set_hl(0, '@constant', { fg = mel_brown })
-					vim.api.nvim_set_hl(0, '@include', { fg = mel_brown }) -- treesitter imports
-					vim.api.nvim_set_hl(0, '@string', { fg = mel_yellow }) -- treesitter strings
-
-					-- Fix nvim-tree highlighting issues
-					vim.api.nvim_set_hl(0, 'NvimTreeCursorLine', { bg = 'NONE' })
-					vim.api.nvim_set_hl(0, 'NvimTreeHighlight', { bg = 'NONE' })
-					vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE' })
-				end,
-			})
-
-			-- Apply colors immediately
-			vim.api.nvim_set_hl(0, 'Keyword', { fg = mel_red, bold = true })
-			vim.api.nvim_set_hl(0, 'Type', { fg = mel_brown })
-			vim.api.nvim_set_hl(0, 'Function', { fg = mel_red })
-			vim.api.nvim_set_hl(0, 'Constant', { fg = mel_brown })
-			vim.api.nvim_set_hl(0, 'Identifier', { fg = mel_red })
-			vim.api.nvim_set_hl(0, 'Statement', { fg = mel_red })
-			vim.api.nvim_set_hl(0, 'Include', { fg = mel_brown }) -- imports
-			vim.api.nvim_set_hl(0, 'String', { fg = mel_yellow }) -- quoted strings
-			vim.api.nvim_set_hl(0, '@keyword', { fg = mel_red, bold = true })
-			vim.api.nvim_set_hl(0, '@type', { fg = mel_brown })
-			vim.api.nvim_set_hl(0, '@function', { fg = mel_red })
-			vim.api.nvim_set_hl(0, '@constant', { fg = mel_brown })
-			vim.api.nvim_set_hl(0, '@include', { fg = mel_brown }) -- treesitter imports
-			vim.api.nvim_set_hl(0, '@string', { fg = mel_yellow }) -- treesitter strings
-
-			-- Fix nvim-tree highlighting issues
-			vim.api.nvim_set_hl(0, 'NvimTreeCursorLine', { bg = 'NONE' })
-			vim.api.nvim_set_hl(0, 'NvimTreeHighlight', { bg = 'NONE' })
-			vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE' })
-		end,
-	},
+	-- Lualine
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
+			"zenbones-theme/zenbones.nvim",
 		},
-		opts = {
-			theme = 'auto',
-		}
+		opts = { theme = "auto" },
+		config = function(_, opts)
+			setup_lualine({
+				red = "#E06C75",
+				orange = "#D19A66",
+				yellow = "#E5C07B",
+				purple = "#C678DD",
+				bg = "#1d2021",
+			})
+		end,
 	},
+
+	{
+		"thesimonho/kanagawa-paper.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("kanagawa-paper")
+		end,
+		opts = {},
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+
+	-- Add new color schemes here
 }
