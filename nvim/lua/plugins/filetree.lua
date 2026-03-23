@@ -10,24 +10,17 @@ return {
       disable_netrw = true,
       hijack_netrw = true,
       open_on_tab = false,
-      hijack_cursor = false,
+      hijack_cursor = true,
       update_cwd = true,
       diagnostics = {
-        enable = true,
-        icons = {
-          hint = "󰌵",
-          info = "󰋽",
-          warning = "󰀪",
-          error = "󰅚",
-        },
+        enable = false,
       },
       update_focused_file = {
         enable = true,
         update_cwd = true,
       },
       git = {
-        enable = true,
-        ignore = true,
+        enable = false,
       },
       view = {
         width = 30,
@@ -35,7 +28,7 @@ return {
         number = false,
         relativenumber = false,
         preserve_window_proportions = false,
-        signcolumn = "yes",
+        signcolumn = "no",
       },
       renderer = {
         highlight_git = false,
@@ -49,8 +42,16 @@ return {
           show = {
             file = true,
             folder = true,
-            folder_arrow = true,
+            folder_arrow = false,
             git = false,
+          },
+          web_devicons = {
+            file = {
+              enable = true,
+            },
+            folder = {
+              enable = false,
+            },
           },
           glyphs = {
             default = "󰈚",
@@ -134,5 +135,9 @@ return {
     vim.api.nvim_create_user_command("NvimTreeRefresh", function()
       require("nvim-tree.api").tree.reload()
     end, { desc = "Refresh NvimTree" })
+
+    -- Fix signcolumn color mismatch
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NvimTreeSignColumn", { bg = "NONE" })
   end,
 }

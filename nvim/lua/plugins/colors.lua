@@ -27,35 +27,31 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"zenbones-theme/zenbones.nvim",
 		},
 		opts = { theme = "auto" },
 		config = function(_, opts)
-			setup_lualine({
-				red = "#E06C75",
-				orange = "#D19A66",
-				yellow = "#E5C07B",
-				purple = "#C678DD",
-				bg = "#1d2021",
-			})
+			setup_lualine(require("config.colors"))
 		end,
 	},
 
-	{
-		"thesimonho/kanagawa-paper.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme("kanagawa-paper")
-		end,
-		opts = {},
-	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {},
 	},
 
-	-- Add new color schemes here
+	{
+		"smit4k/shale.nvim",
+		name = "shale",
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("shale")
+		end,
+	},
+
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+	},
 }
