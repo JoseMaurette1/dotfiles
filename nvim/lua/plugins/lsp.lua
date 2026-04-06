@@ -1,5 +1,4 @@
 return {
-  -- Mason: LSP installer
   {
     "williamboman/mason.nvim",
     config = function()
@@ -7,7 +6,6 @@ return {
     end,
   },
 
-  -- Mason LSP Config: Bridge between mason and lspconfig
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
@@ -16,16 +14,14 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "ts_ls",        -- TypeScript/JavaScript
-          "lua_ls",       -- Lua (for Neovim config)
-          "eslint",       -- ESLint for linting
+          "ts_ls",
+          "lua_ls",
         },
         automatic_installation = true,
       })
     end,
   },
 
-  -- LSP Config
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -94,16 +90,6 @@ return {
       }
       vim.lsp.enable("ts_ls")
 
-      -- ESLint LSP
-      vim.lsp.config.eslint = {
-        cmd = { "vscode-eslint-language-server", "--stdio" },
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "package.json" },
-        capabilities = capabilities,
-        on_attach = on_attach,
-      }
-      vim.lsp.enable("eslint")
-
       -- Lua LSP (for Neovim config editing)
       vim.lsp.config.lua_ls = {
         cmd = { "lua-language-server" },
@@ -127,6 +113,12 @@ return {
         },
       }
       vim.lsp.enable("lua_ls")
+
+      -- Suppress eslint's broken pull-diagnostics circular JSON crash
+      vim.lsp.handlers["textDocument/diagnostic"] = function(err, result, ctx, config)
+        if err then return end
+        vim.lsp.diagnostic.on_diagnostic(err, result, ctx, config)
+      end
 
       -- Configure diagnostic display
       vim.diagnostic.config({

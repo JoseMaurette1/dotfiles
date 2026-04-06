@@ -36,22 +36,22 @@ return {
 
 	{
 		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
+		lazy = true,
 	},
 
 	{
 		"smit4k/shale.nvim",
 		name = "shale",
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme("shale")
-		end,
+		lazy = true,
 	},
 
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		lazy = false,
 		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("catppuccin")
+		end,
 	},
 }

@@ -7,6 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 
 -- Fix input delay for keybindings
 vim.opt.timeoutlen = 300
